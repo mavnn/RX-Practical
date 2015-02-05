@@ -1,0 +1,5 @@
+source https://nuget.org/api/v2
+
+nuget fszmq
+nuget rx-main
+nuget hopac

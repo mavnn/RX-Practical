@@ -1,0 +1,9 @@
+c:\rip\ReactiveTester\ReactiveTester.Shared\bin\Debug\ReactiveTester.Shared.XML
+c:\rip\ReactiveTester\ReactiveTester.Shared\bin\Debug\ReactiveTester.Shared.dll
+c:\rip\ReactiveTester\ReactiveTester.Shared\bin\Debug\ReactiveTester.Shared.pdb
+c:\rip\ReactiveTester\ReactiveTester.Shared\bin\Debug\FSharp.Core.dll
+c:\rip\ReactiveTester\ReactiveTester.Shared\bin\Debug\FSharp.Core.xml
+c:\rip\ReactiveTester\ReactiveTester.Shared\obj\Debug\ReactiveTester.Shared.dll
+c:\rip\ReactiveTester\ReactiveTester.Shared\obj\Debug\ReactiveTester.Shared.pdb
+c:\rip\ReactiveTester\ReactiveTester.Shared\bin\Debug\fszmq.dll
+c:\rip\ReactiveTester\ReactiveTester.Shared\bin\Debug\fszmq.xml

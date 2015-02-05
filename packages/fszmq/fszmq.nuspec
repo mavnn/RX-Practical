@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>fszmq</id>
+    <version>4.0.6</version>
+    <authors>Paulmichael Blasucci</authors>
+    <owners>Henrik Feldt,Paulmichael Blasucci</owners>
+    <licenseUrl>http://github.com/pblasucci/fszmq/blob/master/LICENSE.txt</licenseUrl>
+    <projectUrl>http://zeromq.github.io/fszmq</projectUrl>
+    <iconUrl>https://raw.github.com/zeromq/fszmq/master/docs/files/img/fszmq_logo.png</iconUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>fszmq is an LGPLv3-licensed F# binding for the ZeroMQ distributed computing library.It provides a complete binding to versions 2.1.x, 3.2.x, and 4.0.x of ZeroMQ (Note: each binding is a separate branch in git, as there are some non-compatible differences).This library is primarily designed to be consumed from F#. However, where possible,the library has been designed to appear "friendly" when consumed by other .NET languages (C#, et aliam).</description>
+    <summary>An LGPLv3-licensed F# binding for the ZeroMQ distributed computing library.</summary>
+    <releaseNotes>added assembly-level Extension attribute
+removed unused P/Invoke functions (last vestiges of Timing module)
+refactored monitoring API to include convenience functions (also extension methods)</releaseNotes>
+    <copyright>© Paulmichael Blasucci. All rights reserved.</copyright>
+    <tags>F# fsharp zeromq zmq 0MQ distributed concurrent parallel messaging transport</tags>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="FSharp.Core" targetFramework="" />
+    </frameworkAssemblies>
+  </metadata>
+</package>
