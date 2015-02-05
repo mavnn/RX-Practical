@@ -19,7 +19,7 @@ namespace EventTester
         static void Error(Exception e)
         {
             var err = Console.OpenStandardError();
-            using (var writer = new System.IO.StreamWriter(err, Encoding.UTF8))
+            using (var writer = new System.IO.StreamWriter(err, Console.OutputEncoding))
             {
                 writer.WriteLine("{0}", e);
             }
@@ -30,8 +30,15 @@ namespace EventTester
             using(var pub = new ChangeReciever("tcp://*:5555"))
             {
                 Console.WriteLine("Listening...");
+
                 var obs = Observable.FromEventPattern<Tuple<Guid, string>>(pub, "ChangeRecieved").Select(ep => ep.EventArgs);
                 obs.Subscribe<Tuple<Guid, string>>(Handler);
+
+                var staffSender = new NotificationSender("tcp://localhost:5556");
+                var customerSender = new NotificationSender("tcp://localhost:5557");
+
+                obs
+                    .Subscribe<Tuple<Guid, string>>(t => customerSender.Send(t.Item1));
 
                 var err = Observable.FromEventPattern<Exception>(pub, "OnError").Select(ep => ep.EventArgs);
                 err.Subscribe<Exception>(Error);

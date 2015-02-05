@@ -43,11 +43,21 @@ let send () =
     let guid = Guid.NewGuid()
 
     match rand.NextDouble() with
-    | i when i < 0.5 ->
-        staff.TryAdd(guid, Expiring.create (sprintf "Staff - %A" guid) staffMin staffWindow) |> ignore
-        customers.TryAdd(guid, Expiring.create (sprintf "Customer - %A" guid) customerMin customerWindow) |> ignore
+    | i when i < 0.25 ->
+        staff.TryAdd(guid, Expiring.create (sprintf "<<< %A - Staff" guid) staffMin staffWindow) |> ignore
+        customers.TryAdd(guid, Expiring.create (sprintf "<<< %A - Customer" guid) customerMin customerWindow) |> ignore
+        printfn ">>> %A - Change!" guid
         publisher.Publish guid (sprintf "Change!")
+    | i when i < 0.50 ->
+        customers.TryAdd(guid, Expiring.create (sprintf "<<< %A - Customer" guid) customerMin customerWindow) |> ignore
+        printfn ">>> %A - CustomerOnly!" guid
+        publisher.Publish guid (sprintf "CustomerOnly!")
+    | i when i < 0.75 ->
+        staff.TryAdd(guid, Expiring.create (sprintf "<<< %A - Staff" guid) staffMin staffWindow) |> ignore
+        printfn ">>> %A - StaffOnly!" guid
+        publisher.Publish guid (sprintf "StaffOnly!")
     | _ ->
+        printfn ">>> %A - Ignore!" guid
         publisher.Publish guid (sprintf "Ignore!")
 
 let rand = Random()
@@ -58,8 +68,11 @@ let rec publish () =
         return! publish ()
     }
 
-let staffReciever = new NotificationReceiver("tcp://localhost:5556", staff)
-let custReciever = new NotificationReceiver("tcp://localhost:5557", customers)
+let staffReciever = new NotificationReceiver("tcp://*:5556", staff)
+let custReciever = new NotificationReceiver("tcp://*:5557", customers)
+
+staffReciever.Start()
+custReciever.Start()
 
 Async.Start <| publish ()
 
