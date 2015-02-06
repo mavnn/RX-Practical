@@ -45,9 +45,17 @@ namespace EventTester
                 var staffSender = new NotificationSender("tcp://localhost:5556");
                 var customerSender = new NotificationSender("tcp://localhost:5557");
 
-                var obs = Observable.FromEventPattern<Tuple<Guid, string>>(pub, "ChangeRecieved").Select(ep => ep.EventArgs);
+                var obs = Observable.FromEventPattern<Tuple<Guid, string>>(pub, "ChangeRecieved").Select(ep => ep.EventArgs).Where(e => e.Item2 != "Ignore!");
+
                 obs.Subscribe<Tuple<Guid, string>>(Handler);
-                obs.Select(t => t.Item1).Subscribe(guid => customerSender.Send(guid));
+
+                obs.Where(t => t.Item2.Equals("StaffOnly!")).Subscribe(staffOnly => staffSender.Send(staffOnly.Item1));
+                obs.Where(t => t.Item2.Equals("CustomerOnly!")).Delay(TimeSpan.FromSeconds(5)).Subscribe(customerOnly => customerSender.Send(customerOnly.Item1));
+                obs.Where(t => t.Item2.Equals("Change!")).Delay(TimeSpan.FromSeconds(5)).Subscribe(s => customerSender.Send(s.Item1));
+                obs.Where(t => t.Item2.Equals("Change!")).Subscribe(s => staffSender.Send(s.Item1));
+
+
+                //obs.Select(t => t.Item1).Subscribe(guid => customerSender.Send(guid));
 
                 //var err = Observable.FromEventPattern<Exception>(pub, "OnError").Select(ep => ep.EventArgs);
                 //err.Subscribe<Exception>(Error);

@@ -7,3 +7,13 @@ c:\rip\ReactiveTester\ReactiveTester.Shared\obj\Debug\ReactiveTester.Shared.dll
 c:\rip\ReactiveTester\ReactiveTester.Shared\obj\Debug\ReactiveTester.Shared.pdb
 c:\rip\ReactiveTester\ReactiveTester.Shared\bin\Debug\fszmq.dll
 c:\rip\ReactiveTester\ReactiveTester.Shared\bin\Debug\fszmq.xml
+D:\Git\RX-Practical\ReactiveTester.Shared\bin\Debug\ReactiveTester.Shared.XML
+D:\Git\RX-Practical\ReactiveTester.Shared\bin\Debug\ReactiveTester.Shared.dll
+D:\Git\RX-Practical\ReactiveTester.Shared\bin\Debug\ReactiveTester.Shared.pdb
+D:\Git\RX-Practical\ReactiveTester.Shared\bin\Debug\FSharp.Core.dll
+D:\Git\RX-Practical\ReactiveTester.Shared\bin\Debug\fszmq.dll
+D:\Git\RX-Practical\ReactiveTester.Shared\bin\Debug\FSharp.Core.xml
+D:\Git\RX-Practical\ReactiveTester.Shared\bin\Debug\fszmq.xml
+D:\Git\RX-Practical\ReactiveTester.Shared\obj\Debug\ReactiveTester.Shared.fsprojResolveAssemblyReference.cache
+D:\Git\RX-Practical\ReactiveTester.Shared\obj\Debug\ReactiveTester.Shared.dll
+D:\Git\RX-Practical\ReactiveTester.Shared\obj\Debug\ReactiveTester.Shared.pdb
