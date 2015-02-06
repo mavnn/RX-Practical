@@ -27,21 +27,30 @@ namespace EventTester
 
         static void Main(string[] args)
         {
-            using(var pub = new ChangeReciever("tcp://*:5555"))
+            // Nice docs (although Java): http://reactivex.io/RxJava/javadoc/rx/Observable.html
+            // The challenge:
+            // The ChangeReceiver will fire an event every time a change is received.
+            // Events can be:
+            // "Ignore!" -> don't do anything
+            // "Change!" -> send notification to staff and customers
+            // "StaffOnly!" -> send notification to staff
+            // "CustomerOnly!" -> send notification to customer only
+            //
+            // Staff must be notified within 3 seconds.
+            // Customers most be notified between 5 and 7 seconds.
+            using(var pub = new ChangeReceiver("tcp://*:5555"))
             {
                 Console.WriteLine("Listening...");
-
-                var obs = Observable.FromEventPattern<Tuple<Guid, string>>(pub, "ChangeRecieved").Select(ep => ep.EventArgs);
-                obs.Subscribe<Tuple<Guid, string>>(Handler);
 
                 var staffSender = new NotificationSender("tcp://localhost:5556");
                 var customerSender = new NotificationSender("tcp://localhost:5557");
 
-                obs
-                    .Subscribe<Tuple<Guid, string>>(t => customerSender.Send(t.Item1));
+                //var obs = Observable.FromEventPattern<Tuple<Guid, string>>(pub, "ChangeRecieved").Select(ep => ep.EventArgs);
+                //obs.Subscribe<Tuple<Guid, string>>(Handler);
 
-                var err = Observable.FromEventPattern<Exception>(pub, "OnError").Select(ep => ep.EventArgs);
-                err.Subscribe<Exception>(Error);
+                //var err = Observable.FromEventPattern<Exception>(pub, "OnError").Select(ep => ep.EventArgs);
+                //err.Subscribe<Exception>(Error);
+
                 pub.Start();
                 Console.ReadLine();
                 Console.WriteLine("Closing down.");

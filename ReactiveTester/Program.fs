@@ -68,14 +68,14 @@ let rec publish () =
         return! publish ()
     }
 
-let staffReciever = new NotificationReceiver("tcp://*:5556", staff)
-let custReciever = new NotificationReceiver("tcp://*:5557", customers)
+let staffReceiver = new NotificationReceiver("tcp://*:5556", staff)
+let custReceiver = new NotificationReceiver("tcp://*:5557", customers)
 
-staffReciever.Start()
-custReciever.Start()
+staffReceiver.Start()
+custReceiver.Start()
 
 Async.Start <| publish ()
 
 Console.ReadLine() |> ignore
-(staffReciever :> IDisposable).Dispose()
-(custReciever :> IDisposable).Dispose()
+(staffReceiver :> IDisposable).Dispose()
+(custReceiver :> IDisposable).Dispose()

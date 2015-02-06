@@ -20,7 +20,7 @@ module Messaging =
         with
         | e -> Invalid e
 
-type ChangeReciever (address) =
+type ChangeReceiver (address) =
     let changed = Event<Guid * string>()
     let error = Event<Exception>()
 
